@@ -1,4 +1,4 @@
-﻿K013                                                        MET/CAL Procedure
+                                                            MET/CAL Procedure
 =============================================================================
 INSTRUMENT:            Sub Preamble
 DATE:                  2019-05-22 07:58:23
