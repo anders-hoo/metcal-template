@@ -1,0 +1,22 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project DefaultTargets="" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <PropertyGroup>
+    <SchemaVersion>2.0</SchemaVersion>
+    <ProjectGuid>62deeff0-8155-402a-9663-dc57ea6abdd6</ProjectGuid>
+    <RootNamespace>_METCAL_Template_</RootNamespace>
+    <AssemblyName>[METCAL Template]</AssemblyName>
+    <Name>[METCAL Template]</Name>
+    <InstrumentLine1>Agilent E3634A Calibration</InstrumentLine1>
+    <PackageDate>0001-01-01 00.00.00</PackageDate>
+    <PublishFileType>pkm</PublishFileType>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)' == 'Debug' ">
+  </PropertyGroup>
+  <ItemGroup>
+    <Compile Include="Main.mc">
+      <MainProcedure>True</MainProcedure>
+    </Compile>
+    <Compile Include="Sub Preamble.mc" />
+    <Compile Include="Sub DCV Calibration.mc" />
+  </ItemGroup>
+</Project>

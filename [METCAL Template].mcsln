@@ -1,0 +1,17 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# MET/CAL Solution File
+Project("{0A95F279-908B-4153-BB12-D9936C7938D9}") = "[METCAL Template]", "[METCAL Template]\[METCAL Template].mcproj", "{62DEEFF0-8155-402A-9663-DC57EA6ABDD6}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{62DEEFF0-8155-402A-9663-DC57EA6ABDD6}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{62DEEFF0-8155-402A-9663-DC57EA6ABDD6}.Debug|Any CPU.Build.0 = Debug|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+EndGlobal
