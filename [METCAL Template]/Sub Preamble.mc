@@ -1,12 +1,12 @@
-Pinja                                                       MET/CAL Procedure
+Kallab                                                      MET/CAL Procedure
 =============================================================================
 INSTRUMENT:            Sub Preamble
-DATE:                  2019-05-22 07:58:23
+DATE:                  2021-05-05 09:52:59
 AUTHOR:                Antti Harala
 REVISION:
 ADJUSTMENT THRESHOLD:  70%
-NUMBER OF TESTS:       1
-NUMBER OF LINES:       69
+NUMBER OF TESTS:       2
+NUMBER OF LINES:       102
 =============================================================================
  STEP    FSC    RANGE NOMINAL        TOLERANCE     MOD1        MOD2  3  4 CON
 # Ask flags, Enable with + and Disable with -
@@ -40,12 +40,25 @@ NUMBER OF LINES:       69
 # Write only last evaluation result to database.
   1.004  VSET         RSM = LAST
 
+# VSET MEAS = SA is useful when using MEMC and MEMCX FSCs when DUT is stimulus instrument
+# And the measurement standard is an indicator. VSET MEAS = SA instructs
+# the system to treat SYSTEM ACTUAL as the measurement result which is transferred
+# to the report database. VSET MEAS defaults to UI (DUT INDICATED). Using VSET MEAS = SA
+# when the measurement standard is an indicator allows efficient use of MEMC and MEMCX
+# FSCs. Writing down the explicit nominal value is not necessary. Only explicitly writing
+# the TOL value in necessary. For example. Variable TOL value can be set programmatically
+# with IF ELSEIF ENDIF statements.
+  1.005  VSET         MEAS = SA
+  1.006  TOL          0.330U
+  1.007  MEMC         kH             TOL
+
 # NMEAS = 3 for consumer level UUTs. Increase NMEAS if calibrating
-# more accuracte UUTs.
-  1.005  VSET         NMEAS = 3
+# more accuracte UUTs. For performance / verification NMEAS = 1 is
+# adequate.
+  2.001  VSET         NMEAS = 3
 
 # Guardbanding mode set to measurement uncertainty.
-  1.006  VSET         GB = MU
+  2.002  VSET         GB = MU
 
 # The settings below set the Welch-Satterthwaite mode ON with coverage
 # probability of 2 sigma (95.45%). Welch-Satterthwaite mode calculates
@@ -56,9 +69,9 @@ NUMBER OF LINES:       69
 # DFS1, DFS2, DF3 etc ... to modify these values if necessary.
 # COV_FAC setting must NOT be specified in .ini file or in the procedure,
 # otherwise KCONF setting does not have an effect.
-  1.007  VSET         USE_ST = NO
-  1.008  VSET         WS = YES
-  1.009  VSET         KCONF = 95.45%
+  2.003  VSET         USE_ST = NO
+  2.004  VSET         WS = YES
+  2.005  VSET         KCONF = 95.45%
 
 # Guarbanding factor decreases specification limits (TOL)
 # by a factor of 0.825 of the _expanded_ measurement uncertainty.
@@ -67,24 +80,24 @@ NUMBER OF LINES:       69
 # Using GBF of 0.825 is apropriate for at least 95 % conformity probability.
 # 95% conformance probability satisfies ISO 14253-1 and 17025 standards
 # with regards to the testing laboratory decision rules.
-  1.010  VSET         GBF = 0.825
+  2.006  VSET         GBF = 0.825
 
 # "PASS indeterminate" is interpreted as PASS and "FAIL intederminate" is
 # interpreted as FAIL.
-  1.011  VSET         GB_RESULT = PF
+  2.007  VSET         GB_RESULT = PF
 
 # Post test dialog is displayed in PASS/FAIL indeterminate and FAIL cases.
 # If test is a PASS without qualifications the post test dialog is supressed.
-  1.012  VSET         GB_PTS = P
+  2.008  VSET         GB_PTS = P
 
 # MET/CAL uses the limits based on the UUT's specified tolerance as the
 # basis for the Tolerance Error calculation (for post test dialog).
-  1.013  VSET         GB_TOL_ERR = SPEC
+  2.009  VSET         GB_TOL_ERR = SPEC
 
 # When GB_OVERFLOW is set to LIMIT, an overflow condition causes MET/CAL
 # to set the guardbanded test tolerance to zero. This prevents the test
 # from passing outright, but allows Pass Indeterminate, Fail Indeterminate,
 # and Fail as possible test results.
-  1.014  VSET         GB_OVERFLOW = LIMIT
+  2.010  VSET         GB_OVERFLOW = LIMIT
 
-  1.015  END
+  2.011  END
