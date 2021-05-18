@@ -1,12 +1,12 @@
-Pinja                                                       MET/CAL Procedure
+Kallab                                                      MET/CAL Procedure
 =============================================================================
 INSTRUMENT:            Agilent E3634A Calibration
-DATE:                  2018-10-23 12:36:53
+DATE:                  2021-05-18 10:22:41
 AUTHOR:                Antti Harala
 REVISION:              1.1
 ADJUSTMENT THRESHOLD:  70%
 NUMBER OF TESTS:       1
-NUMBER OF LINES:       46
+NUMBER OF LINES:       55
 =============================================================================
  STEP    FSC    RANGE NOMINAL        TOLERANCE     MOD1        MOD2  3  4 CON
 # Add description and notes here. For example describe or list standards,
@@ -26,25 +26,30 @@ NUMBER OF LINES:       46
   1.002  RESET        OUTP OFF
 
 # Main heading.
-  1.003  HEAD         {Agilent E3634A Calibration}
-  1.004  RSLT         =
-  1.005  TARGET       -p
+# If you are creating procedures for multiple instruments (multiple INSTRUMENT: lines in
+# file header) you can use PROC() function to call the procedure name and use it in HEAD
+# and RSLT functions.
+  1.003  MATH         @dev_dame = PROC()
+  1.004  HEAD         [V @dev_name]
+  1.005  RSLT         =[V @devname]
+  1.006  RSLT         =
+  1.007  TARGET       -p
 
 # First connection messages.
-  1.006  DISP         Connect UUT to GPIB bus 1.
+  1.008  DISP         Connect UUT to GPIB bus 1.
 
 # Tag.Name = DC Voltage Calibration
 # Tag.Start = START_DCV_CALIBRATION
 # Tag.End = END_DCV_CALIBRATION
 
-  1.007  LABEL        START_DCV_CALIBRATION
+  1.009  LABEL        START_DCV_CALIBRATION
 
-  1.008  RSLT         =DC Voltage Calibration
-  1.009  TARGET       -p
+  1.010  RSLT         =DC Voltage Calibration
+  1.011  TARGET       -p
 
 # Divide procedure to subprocedures if necessary.
-  1.010  CALL         Sub DCV Calibration
+  1.012  CALL         Sub DCV Calibration
 
-  1.011  LABEL        END_DCV_CALIBRATION
+  1.013  LABEL        END_DCV_CALIBRATION
 
-  1.012  END
+  1.014  END
