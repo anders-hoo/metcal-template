@@ -7,8 +7,9 @@
     <AssemblyName>[METCAL Template]</AssemblyName>
     <Name>[METCAL Template]</Name>
     <InstrumentLine1>Agilent E3634A Calibration</InstrumentLine1>
-    <PackageDate>0001-01-01 00.00.00</PackageDate>
+    <PackageDate>2021-05-18</PackageDate>
     <PublishFileType>pkm</PublishFileType>
+    <PublishFileName>[METCAL Template]</PublishFileName>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)' == 'Debug' ">
   </PropertyGroup>

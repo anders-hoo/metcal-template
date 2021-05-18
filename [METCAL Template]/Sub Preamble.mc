@@ -1,12 +1,12 @@
 Kallab                                                      MET/CAL Procedure
 =============================================================================
 INSTRUMENT:            Sub Preamble
-DATE:                  2021-05-05 09:52:59
+DATE:                  2021-05-18 10:11:36
 AUTHOR:                Antti Harala
 REVISION:
 ADJUSTMENT THRESHOLD:  70%
 NUMBER OF TESTS:       2
-NUMBER OF LINES:       102
+NUMBER OF LINES:       115
 =============================================================================
  STEP    FSC    RANGE NOMINAL        TOLERANCE     MOD1        MOD2  3  4 CON
 # Ask flags, Enable with + and Disable with -
@@ -35,10 +35,13 @@ NUMBER OF LINES:       102
   1.002  ASK-   R D   N B            P               C            F        V
 
 # Reset all VSET / TSET values to defaults before modifying them.
-  1.003  VSET         ALL = *
+  1.008  VSET         ALL = *
 
 # Write only last evaluation result to database.
-  1.004  VSET         RSM = LAST
+  1.009  VSET         RSM = LAST
+
+# TOL_REF = SYSTEM_ACTUAL is the preferred MET/CAL setting. Change only if bugs are found on results.
+  1.010  VSET         TOL_REF = SYSTEM_ACTUAL
 
 # VSET MEAS = SA is useful when using MEMC and MEMCX FSCs when DUT is stimulus instrument
 # And the measurement standard is an indicator. VSET MEAS = SA instructs
@@ -48,9 +51,14 @@ NUMBER OF LINES:       102
 # FSCs. Writing down the explicit nominal value is not necessary. Only explicitly writing
 # the TOL value in necessary. For example. Variable TOL value can be set programmatically
 # with IF ELSEIF ENDIF statements.
-  1.005  VSET         MEAS = SA
-  1.006  TOL          0.330U
-  1.007  MEMC         kH             TOL
+
+# IN SHORT: Use MEAS = SA if DUT is stimulus instrument. Use MEAS = UI if DUT is indicator.
+  1.011  VSET         MEAS = SA
+
+# IN SHORT: TOL must be specified explicitly to get enough required decimal places. Using variables is
+# NOT RECOMMENDED!
+  1.012  TOL          0.330U
+  1.013  MEMC         kH             TOL
 
 # NMEAS = 3 for consumer level UUTs. Increase NMEAS if calibrating
 # more accuracte UUTs. For performance / verification NMEAS = 1 is
